@@ -1,0 +1,14 @@
+#!/bin/bash
+: ${OCCI_ENDPOINT:="http://server4-epsh.unizar.es:8787"}
+
+if [ $1 = "--voms-proxy-init" ]; then
+    docker rm occi-voms-proxy 2>/dev/null
+    docker run -it -v ~/.globus:/root/.globus:ro \
+        --name occi-voms-proxy marklee77/egi-fedcloud-client /bin/bash -c \
+        "fetch-crl -v && voms-proxy-init -voms fedcloud.egi.eu --rfc --dont_verify_ac"
+    exit 0
+fi
+
+docker run --volumes-from occi-voms-proxy marklee77/egi-fedcloud-client \
+    occi --auth x509 --user-cred /tmp/x509up_u0 --voms \
+        --endpoint ${OCCI_ENDPOINT} $@

@@ -39,11 +39,11 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 RUN ln -s /usr/share/java/commons-io.jar /var/lib/voms-clients3/lib/
 
-RUN fetch-crl -v
-
 RUN rmdir /etc/vomses
 ADD vomses /etc/vomses
 ADD vomsdir/fedcloud.egi.eu /etc/grid-security/vomsdir/fedcloud.egi.eu
 RUN chmod 644 /etc/vomses /etc/grid-security/vomsdir/*
     
-VOLUME [ "/root/.globus" ]
+RUN fetch-crl -v
+
+VOLUME [ "/etc/grid-security/certificates", "/tmp" ]
