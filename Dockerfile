@@ -37,8 +37,7 @@ RUN apt-get update && \
         occi-cli \
         voms-clients3 && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/*
-RUN ln -s /usr/share/java/commons-io.jar /var/lib/voms-clients3/lib/ && \
-    ln -s /opt/occi-cli/bin/occi /usr/bin/
+RUN ln -s /usr/share/java/commons-io.jar /var/lib/voms-clients3/lib/
 
 RUN fetch-crl -v
 
