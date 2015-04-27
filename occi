@@ -9,6 +9,7 @@ if [ $1 = "--voms-proxy-init" ]; then
     exit 0
 fi
 
-docker run --volumes-from occi-voms-proxy -v $PWD:/data:rw marklee77/egi-fedcloud-client \
-    occi --auth x509 --user-cred /tmp/x509up_u0 --voms \
-        --endpoint ${OCCI_ENDPOINT} $@
+docker run --volumes-from occi-voms-proxy -v $PWD:/data:rw -it \
+    marklee77/egi-fedcloud-client \
+        occi --auth x509 --user-cred /tmp/x509up_u0 --voms \
+            --endpoint ${OCCI_ENDPOINT} $@
