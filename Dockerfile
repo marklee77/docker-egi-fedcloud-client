@@ -46,4 +46,6 @@ RUN chmod 644 /etc/vomses /etc/grid-security/vomsdir/*
     
 RUN fetch-crl -v
 
+WORKDIR /data
+
 VOLUME [ "/etc/grid-security/certificates", "/tmp" ]
