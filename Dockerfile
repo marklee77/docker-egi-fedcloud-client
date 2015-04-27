@@ -8,7 +8,8 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && \
     apt-get -y install \
         curl \
-        libcommons-io-java && \
+        libcommons-io-java \
+        openssh-client && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 RUN curl -s http://repository.egi.eu/sw/production/umd/UMD-DEB-PGP-KEY | \
