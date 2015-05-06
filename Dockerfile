@@ -44,7 +44,7 @@ ADD vomses /etc/vomses
 ADD vomsdir/fedcloud.egi.eu /etc/grid-security/vomsdir/fedcloud.egi.eu
 RUN chmod 644 /etc/vomses /etc/grid-security/vomsdir/*
     
-RUN fetch-crl -v
+RUN fetch-crl -v || true
 
 WORKDIR /data
 
